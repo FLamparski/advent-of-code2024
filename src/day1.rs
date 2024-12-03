@@ -1,7 +1,6 @@
 use std::fs;
 
 pub(crate) fn day1(input_filename: &str) {
-
     // read and parse the input file
 
     let contents = fs::read_to_string(input_filename).expect("could not read file");

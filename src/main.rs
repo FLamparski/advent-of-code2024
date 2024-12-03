@@ -1,6 +1,7 @@
 use clap::{Parser, Subcommand};
 
 mod day1;
+mod day2;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -16,6 +17,10 @@ enum Commands {
         /// Path to input data
         input_filename: String,
     },
+    Day2 {
+        /// Path to input data
+        input_filename: String,
+    },
 }
 
 fn main() {
@@ -23,5 +28,6 @@ fn main() {
 
     match &cli.command {
         Commands::Day1 { input_filename } => day1::day1(input_filename),
+        Commands::Day2 { input_filename } => day2::day2(input_filename),
     }
 }
