@@ -1,4 +1,3 @@
-use core::num;
 use std::{cell::RefCell, collections::HashSet, fs};
 
 pub(crate) fn day2(input_filename: &str) {
@@ -23,7 +22,6 @@ fn count_safe_reports(input: &str) -> usize {
         .filter(|report| get_violations(report).is_empty())
         .count()
 }
-
 
 // TODO finish later
 fn count_safe_reports_with_damping(input: &str) -> usize {
