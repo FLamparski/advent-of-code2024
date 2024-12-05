@@ -9,6 +9,7 @@ pub(crate) fn day2(input_filename: &str) {
     let num_safe_reports_with_damping = count_safe_reports_with_damping(&contents);
 
     println!("number of safe reports: {}", num_safe_reports);
+    println!("    safe after damping: {}", num_safe_reports_with_damping);
 }
 
 fn count_safe_reports(input: &str) -> usize {
@@ -43,11 +44,10 @@ fn is_report_safe_with_damping(report: &Vec<i8>) -> bool {
         return true;
     }
 
-    let is_safe_after_damping = violations
-        .iter()
+    let is_safe_after_damping = (0..report.len())
         .map(|i| {
             let mut report = report.to_owned();
-            report.remove(i - 1);
+            report.remove(i);
             get_violations(&report)
         })
         .any(|violations| violations.is_empty());
