@@ -5,12 +5,6 @@ pub(crate) fn day4(input_filename: &str) {
     let contents = fs::read_to_string(input_filename).expect("could not read file");
     let count = count_xmas(contents);
     println!("count: {}", count);
-
-    // count so far was 2490, which was too low
-    // matching both XMAS and SAMX results in 5001 matches, too high but suggests some were missing
-    // 5001 - 2490 = 2511, too high (diff 21)
-    // binary search.
-    // try 2500... correct.
 }
 
 fn count_xmas(input: String) -> usize {
@@ -25,14 +19,14 @@ fn count_xmas(input: String) -> usize {
     // Table of offsets from the current position in the grid
     // TODO: Generalise to get_offsets(k: usize)
     let searches = vec![
-        vec![(0, 0), (0, 1), (0, 2), (0, 3)],                // 0 +
-        vec![(0, 0), (1, 1), (2, 2), (3, 3)],                // + +
-        vec![(0, 0), (1, 0), (2, 0), (3, 0)],                // + 0
-        mul(vec![(0, 0), (1, 1), (2, 2), (3, 3)], (-1, 1)),  // - +
-        mul(vec![(0, 0), (0, 1), (0, 2), (0, 3)], (0, -1)),  // - 0
-        mul(vec![(0, 0), (1, 1), (2, 2), (3, 3)], (-1, -1)), // - -
-        mul(vec![(0, 0), (0, 1), (0, 2), (0, 3)], (0, -1)),  // 0 -
-        mul(vec![(0, 0), (1, 1), (2, 2), (3, 3)], (1, -1)),  // + -
+        mul(vec![(0, 0), (1, 1), (2, 2), (3, 3)], ( 0,  1)),  // 0 +
+        mul(vec![(0, 0), (1, 1), (2, 2), (3, 3)], ( 1,  1)),  // + +
+        mul(vec![(0, 0), (1, 1), (2, 2), (3, 3)], ( 1,  0)),  // + 0
+        mul(vec![(0, 0), (1, 1), (2, 2), (3, 3)], (-1,  1)),  // - +
+        mul(vec![(0, 0), (1, 1), (2, 2), (3, 3)], ( 0, -1)),  // 0 -
+        mul(vec![(0, 0), (1, 1), (2, 2), (3, 3)], (-1, -1)),  // - -
+        mul(vec![(0, 0), (1, 1), (2, 2), (3, 3)], (-1,  0)),  // - 0
+        mul(vec![(0, 0), (1, 1), (2, 2), (3, 3)], ( 1, -1)),  // + -
     ];
 
     let sum: usize = grid
