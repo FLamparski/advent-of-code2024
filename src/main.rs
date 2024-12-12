@@ -6,6 +6,7 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -41,6 +42,10 @@ enum Commands {
         /// Path to input data
         input_filename: String,
     },
+    Day7 {
+        /// Path to input data
+        input_filename: String,
+    },
 }
 
 fn main() {
@@ -53,5 +58,6 @@ fn main() {
         Commands::Day4 { input_filename } => day4::day4(input_filename),
         Commands::Day5 { input_filename } => day5::day5(input_filename),
         Commands::Day6 { input_filename } => day6::day6(input_filename),
+        Commands::Day7 { input_filename } => day7::day7(input_filename),
     }
 }
